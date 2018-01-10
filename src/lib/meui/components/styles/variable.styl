@@ -1,0 +1,80 @@
+@import "//at.alicdn.com/t/font_533011_0qtsbw7mtvbr19k9.css"
+@import "../../../../../node_modules/stylus-px2rem/index.styl"
+html-font-size = 100px;
+/**
+* some Function
+*/
+setTopLine(c=#c7c7c7)
+  content ''
+  position absolute
+  left 0
+  top 0
+  right 0
+  height 1px
+  border-top 1px solid c
+  color c
+  transform-origin 0 0
+  transform scaleY(0.5)
+
+setBottomLine(c=#c7c7c7)
+  content ''
+  position absolute
+  left 0
+  bottom 0
+  right 0
+  height 1px
+  border-bottom 1px solid c
+  color c
+  transform-origin 0 100%
+  transform scaleY(0.5)
+/**
+* color
+*/
+meuiColorPrimary = #1AAD19
+meuiColorWarn = #E64340
+
+/**
+* text
+*/
+meuiTextColorTitle = #000000;
+meuiTextColorTips = #B2B2B2;
+meuiTextColorWarn = meuiColorWarn;
+meuiTextColorGray = #999999;
+
+/**
+* Header
+*/
+header-background-color = #6fc6ff
+header-title-color = #fff
+header-text-color = #eeeeee
+header-arrow-color = #eeeeee
+
+/**
+* Group
+*/
+group-title-margin-top = 15px
+group-title-margin-bottom = 8px
+cell-tips-font-size = 14px;
+/**
+* Cell
+*/
+meuiCellBg = #ffffff
+meuiCellBorderColor = #d9d9d9
+meuiCellGapV = 10px
+meuiCellGapH = 15px
+meuiCellHeight = 44px
+meuiCellFontSize = 17px
+meuiCellTipsFontSize = cell-tips-font-size
+
+meuiCellLineHeight = ((meuiCellHeight)-(meuiCellGapV)*2)
+meuiCellMarginTop = 20px
+
+cell-disabled-arrow-color = #e2e2e2
+/**
+* tap
+*/
+.me-tap-active
+  tap-highlight-color rgba(0,0,0,0)
+  user-select none
+.me-tap-active:active
+  background-color #ececec
