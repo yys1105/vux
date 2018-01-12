@@ -96,7 +96,7 @@
 <style scoped lang="stylus">
   @import "../styles/variable.styl"
   .fixed-header
-    position sticky
+    position absolute
     top 0
     left 0
     z-index 99

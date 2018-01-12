@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <view-box>
+  <view-box body-padding-top=".46rem">
     <me-header slot="header"></me-header>
     <router-view class="router-view"/>
   </view-box>

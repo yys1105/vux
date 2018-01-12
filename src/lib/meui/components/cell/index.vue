@@ -1,10 +1,14 @@
 <script>
+  import InlineDesc from '../inline-desc'
   import { go } from '../../libs/router'
   export default {
     name: 'Cell',
-    components: {},
+    components: { InlineDesc },
     props: {
-      title: String,
+      title: {
+        type:String,
+        default:'未定义'
+      },
       value: String,
       inlineDesc: String,
       link: [String, Object],
@@ -22,7 +26,7 @@
       },
       valueAlign: {
         type: String,
-        default: 'left'
+        default: 'right'
       },
       borderIntent: {
         type: Boolean,
@@ -47,6 +51,15 @@
             alignItems:this.alignItems
           }
         }
+      },
+      valueClass() {
+        return {
+          'meui-cell-primary':this.primary === 'content' || this.valueAlign === 'left',
+          'meui-cell-align-left':this.valueAlign==='left',
+          'meui-cell-arrow-transition':!!this.arrowDirection,
+          'meui-cell-arrow-up':this.arrowDirection === 'up',
+          'meui-cell-arrow-down':this.arrowDirection === 'down',
+        }
       }
     },
     methods:{
@@ -62,12 +75,11 @@
 
 <template>
   <div class="meui-cell"
-       :class="{'me-tap-active': isLink || !!link,'me-cell_access': isLink || !!link,'me-cell-no-border-intent': !borderIntent,'me-cell-disabled': disabled}"
+       :class="{'meui-tap-active': isLink || !!link,'meui-cell_access': isLink || !!link,'meui-cell-no-border-intent': !borderIntent,'meui-cell-disabled': disabled}"
        :style="style"
        @click="onClick">
     <div class="meui-cell__hd">
       <slot name="icon">
-        <i class="iconfont icon-wenjianjia1"></i>
       </slot>
     </div>
     <div class="meui-cell-bd"
@@ -77,11 +89,17 @@
                v-if="title || hasTitleSlot">
           <slot name="title">{{ title }}</slot>
         </label>
-        <slot name="after-title">
-          标题后内容
-        </slot>
+        <slot name="after-title"></slot>
       </p>
+      <inline-desc>
+        <slot name="inline-desc">{{ inlineDesc }}</slot>
+      </inline-desc>
     </div>
+    <div class="meui-cell__ft"
+         :class="valueClass">
+      <slot>{{ value }}</slot>
+    </div>
+    <slot name="child"></slot>
   </div>
 </template>
 
@@ -104,11 +122,20 @@
     &:first-child
       &:before
         display none
-  .meui-cell.me-cell-no-border-intent:before
+  .meui-cell.meui-cell-no-border-intent:before
     left 0
   .meui-cell-disabled
     .meui-label
       color #b2b2b2
     &.meui-cell-access .meui-cell__ft:after
       border-color cell-disabled-arrow-color
+  .meui-cell__ft
+    text-align right
+    color meuiTextColorGray
+  .meui-cell__ft.meui-cell-align-left
+    text-align:left
+  .meui-cell_access .meui-cell__ft.meui-cell-arrow-up:after
+    transform matrix(.71,.71,-.71,.71,0,0) rotate(-90deg)
+  .meui-cell_access .meui-cell__ft.meui-cell-arrow-down:after
+    transform matrix(.71,.71,-.71,.71,0,0) rotate(90deg)
 </style>

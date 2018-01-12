@@ -18,7 +18,7 @@
 <template>
   <div class="meui-tab">
     <slot name="header"></slot>
-    <div class=""
+    <div class="meui-tab__panel"
          ref="viewBoxBody"
          :style="{paddingTop:bodyPaddingTop,paddingBottom:bodyPaddingBottom}">
       <slot></slot>
@@ -35,7 +35,7 @@
   .meui-tab__panel
     box-sizing border-box
     height 100%
-    padding-bottom 50px
+    /*padding-bottom 50px*/
     overflow auto
-    -webkit-overflow-scrolling touch
+    overflow-scrolling touch
 </style>
